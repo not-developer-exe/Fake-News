@@ -52,7 +52,7 @@ export default function App() {
       setError(null); // Clear general errors
       setDeleteError(null); // Clear delete errors
       try {
-        const response = await fetch('http://localhost:5001/api/history');
+        const response = await fetch('https://fake-news-u7gy.onrender.com/api/history');
         if (!response.ok) {
           const errorData = await response.json();
           throw new Error(errorData.message || 'Failed to fetch history');
@@ -83,7 +83,7 @@ export default function App() {
     setError(null);
     setDeleteError(null); // Clear delete errors on new analysis
     try {
-      const response = await fetch('http://localhost:5001/api/check-claim', {
+      const response = await fetch('https://fake-news-u7gy.onrender.com/api/check-claim', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ claimText: inputText }),
@@ -102,7 +102,6 @@ export default function App() {
     }
   };
 
-  // --- NEW: Delete Handler ---
   const handleDeleteItem = async (idToDelete) => {
      setDeleteError(null); // Clear previous delete errors
     // Optimistic UI update (remove immediately)
@@ -119,7 +118,7 @@ export default function App() {
 
 
     try {
-      const response = await fetch(`http://localhost:5001/api/history/${idToDelete}`, {
+      const response = await fetch(`https://fake-news-u7gy.onrender.com/api/history/${idToDelete}`, {
         method: 'DELETE',
       });
       if (!response.ok) {
@@ -137,7 +136,7 @@ export default function App() {
        // Re-select item if modal was closed due to optimistic update
        const deletedItem = originalHistory.find(item => item._id === idToDelete);
        if(deletedItem && selectedHistoryItem && selectedHistoryItem._id === idToDelete){
-            setSelectedHistoryItem(deletedItem); // Reopen modal? Or just notify? Let's notify.
+            setSelectedHistoryItem(deletedItem); 
        }
 
     }
