@@ -2,18 +2,17 @@ import { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 
-export default function Register() { // <--- 1. Changed name to Register
-  const [username, setUsername] = useState(''); // <--- 2. Added username state
+export default function Register() { // Changed name to Register
+  const [username, setUsername] = useState(''); // Added username state
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   
-  // <--- 3. Destructure 'register' instead of 'login'
-  const { register } = useContext(AuthContext); 
+  const { register } = useContext(AuthContext); // Use register instead of login
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // <--- 4. Call register with username
+    // Call register with username, email, and password
     const success = await register(username, email, password); 
     if (success) navigate('/');
   };
