@@ -39,7 +39,7 @@ export const analyzeClaimWithGemini = async (text) => {
   // Extract Sources
   const sources = response.candidates?.[0]?.groundingMetadata?.groundingAttributions
     ?.map(attr => ({ title: attr.web?.title, uri: attr.web?.uri }))
-    .filterSJ(s => s.uri) || [];
+    .filter(s => s.uri) || [];
 
   return { ...data, sources };
 };
