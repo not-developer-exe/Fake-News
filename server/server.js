@@ -22,11 +22,7 @@ app.use(helmet());
 app.use(morgan('dev')); // Log requests to console
 app.use(express.json());
 
-// Strict CORS (Adjust CLIENT_URL in your .env file)
-app.use(cors({ 
-  origin: process.env.CLIENT_URL || 'http://localhost:5173',
-  credentials: true
-}));
+app.use(cors());
 
 // Rate Limiting (Prevent AI quota draining)
 const limiter = rateLimit({
