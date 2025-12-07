@@ -52,7 +52,11 @@ export default function ResultCard({ result }) {
   const styles = getVerdictStyles();
 
   return (
-    <div className={`p-6 rounded-2xl border-l-4 shadow-sm bg-white dark:bg-zinc-900 ${styles.border}`}>
+    <motion.div 
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      className={`p-6 rounded-2xl border-l-4 shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl ${styles.border}`}
+    >
       
       {/* Header Section */}
       <div className={`flex items-center gap-4 p-4 rounded-xl mb-6 ${styles.bg}`}>
@@ -102,6 +106,6 @@ export default function ResultCard({ result }) {
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }
